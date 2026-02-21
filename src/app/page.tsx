@@ -5,8 +5,8 @@ import { useState } from 'react';
 export default function Home() {
   const [amount, setAmount] = useState('');
   
-  // Número de WhatsApp (cambiar por el real)
-  const whatsappNumber = '525555555555';
+  // Número de WhatsApp
+  const whatsappNumber = '525519678540';
   
   const handleWhatsApp = () => {
     const message = amount 
