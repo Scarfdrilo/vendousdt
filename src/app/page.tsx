@@ -6,7 +6,7 @@ export default function Home() {
   const [amount, setAmount] = useState('');
   
   // Bot de Telegram para atención automática
-  const telegramBot = 'SolucionesBonanza_bot'; // Cambiar por el username real del bot
+  const telegramBot = 'cdmxotcbot';
   
   const handleTelegram = () => {
     const message = amount 
