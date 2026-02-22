@@ -102,10 +102,16 @@ async function handleCallback(callbackQuery: { message: { chat: { id: number } }
 🛒 <b>¿Cómo comprar USDT?</b>
 
 <b>Paso 1:</b> Dime cuántos pesos (MXN) quieres invertir
-<b>Paso 2:</b> Te envío los datos de pago
-<b>Paso 3:</b> Realizas el pago (SPEI, depósito, OXXO)
-<b>Paso 4:</b> Envías comprobante
-<b>Paso 5:</b> Reciben tus USDT en 5-15 minutos
+<b>Paso 2:</b> Realiza tu transferencia SPEI
+<b>Paso 3:</b> Envías comprobante aquí
+<b>Paso 4:</b> Recibes tus USDT en 5-15 minutos
+
+🏦 <b>Datos para transferencia:</b>
+━━━━━━━━━━━━━━━━━━━━
+<b>Banco:</b> Arcus
+<b>Nombre:</b> Soluciones Integrales Bonanza
+<b>CLABE:</b> <code>706969140395121342</code>
+━━━━━━━━━━━━━━━━━━━━
 
 💬 <b>Escribe el monto que deseas comprar</b>
 Ejemplo: "Quiero comprar 5000 pesos"
@@ -118,22 +124,21 @@ Ejemplo: "Quiero comprar 5000 pesos"
 
     case 'payment_methods': {
       const paymentMessage = `
-💳 <b>Métodos de Pago Aceptados</b>
+💳 <b>Método de Pago</b>
 
-🏦 <b>SPEI (Transferencia)</b>
-• Banco: Arcus
-• Procesamiento: Inmediato
+🏦 <b>Transferencia SPEI</b>
+━━━━━━━━━━━━━━━━━━━━
+<b>Banco:</b> Arcus
+<b>Nombre:</b> Soluciones Integrales Bonanza
+<b>CLABE:</b> <code>706969140395121342</code>
+━━━━━━━━━━━━━━━━━━━━
 
-💵 <b>Depósito en Efectivo</b>
-• OXXO
-• 7-Eleven
-• Farmacias del Ahorro
+⚡ <b>Procesamiento:</b> 5-15 minutos
+✅ <b>Disponible:</b> 24/7
 
-📱 <b>Otros</b>
-• Depósito en ventanilla
-• Cajero automático
-
-⚡ Todos los pagos se procesan en 5-15 minutos
+📝 <b>Importante:</b>
+• Solo aceptamos transferencias SPEI
+• Después de transferir, envía tu comprobante aquí
 
 💬 ¿Listo para comprar? Escribe el monto que deseas.
 `;
@@ -224,15 +229,21 @@ Tú recibes: <b>${usdt.toFixed(2)} USDT</b>
 📊 Tipo de cambio: $${rate.toFixed(2)} MXN por USDT
 <i>(Incluye 1.5% de comisión)</i>
 
-✅ ¿Deseas continuar con esta compra?
-Responde <b>"Sí"</b> y te envío los datos de pago.
+🏦 <b>Datos para transferencia SPEI:</b>
+━━━━━━━━━━━━━━━━━━━━
+<b>Banco:</b> Arcus
+<b>Nombre:</b> Soluciones Integrales Bonanza
+<b>CLABE:</b> <code>706969140395121342</code>
+━━━━━━━━━━━━━━━━━━━━
+
+📝 Realiza la transferencia y envía tu comprobante aquí.
 `;
       await sendMessage(chatId, quoteMessage, {
         reply_markup: {
           inline_keyboard: [
             [
-              { text: '✅ Sí, quiero comprar', callback_data: 'buy_usdt' },
-              { text: '❌ Cancelar', callback_data: 'exchange_rate' }
+              { text: '📋 Ver datos de pago', callback_data: 'payment_methods' },
+              { text: '🔄 Nueva cotización', callback_data: 'exchange_rate' }
             ]
           ]
         }
