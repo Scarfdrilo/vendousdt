@@ -5,31 +5,35 @@ import { useState } from 'react';
 export default function Home() {
   const [amount, setAmount] = useState('');
   
-  // Número de WhatsApp
-  const whatsappNumber = '525519678540';
+  // Bot de Telegram para atención automática
+  const telegramBot = 'SolucionesBonanza_bot'; // Cambiar por el username real del bot
   
-  const handleWhatsApp = () => {
+  const handleTelegram = () => {
     const message = amount 
-      ? `Hola, quiero comprar ${amount} USDT` 
-      : 'Hola, quiero información sobre USDT';
-    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+      ? `Hola, quiero información sobre servicios de pago. Monto aproximado: $${amount} MXN` 
+      : 'Hola, quiero información sobre los servicios de Soluciones Integrales Bonanza';
+    const url = `https://t.me/${telegramBot}?start=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-green-900 to-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
       {/* Header */}
-      <header className="p-6">
+      <header className="p-6 border-b border-blue-500/20">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
-              <span className="text-xl font-bold text-white">$</span>
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-xl flex items-center justify-center">
+              <span className="text-2xl font-bold text-white">B</span>
             </div>
-            <span className="text-2xl font-bold text-white">VendoUSDT</span>
+            <div>
+              <span className="text-xl font-bold text-white block leading-tight">Soluciones Integrales</span>
+              <span className="text-cyan-400 text-sm font-semibold">BONANZA</span>
+            </div>
           </div>
-          <div className="flex items-center gap-2 text-green-400">
-            <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-            <span className="text-sm">En línea</span>
+          <div className="flex items-center gap-2">
+            <span className="bg-blue-500/20 text-cyan-400 px-3 py-1 rounded-full text-sm font-medium border border-blue-500/30">
+              🏦 Powered by Arcus
+            </span>
           </div>
         </div>
       </header>
@@ -38,50 +42,55 @@ export default function Home() {
       <main className="max-w-4xl mx-auto px-6 py-12">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-            Compra y Vende <span className="text-green-400">USDT</span>
+            Soluciones <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Financieras</span>
           </h1>
           <p className="text-xl text-gray-300 mb-2">
-            Transacciones rápidas, seguras y al mejor precio
+            Procesamiento de pagos rápido, seguro y confiable
           </p>
-          <p className="text-green-400 font-semibold">
-            💬 Atención personalizada por WhatsApp
+          <p className="text-cyan-400 font-semibold">
+            🤖 Atención automática 24/7 por Telegram
           </p>
         </div>
 
         {/* Card principal */}
-        <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 mb-8 border border-gray-700">
+        <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 mb-8 border border-blue-500/20">
           <div className="grid md:grid-cols-2 gap-8">
             {/* Formulario */}
             <div>
               <h2 className="text-2xl font-bold text-white mb-6">
-                ¿Cuánto necesitas?
+                ¿Cómo podemos ayudarte?
               </h2>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-gray-400 mb-2">Cantidad en USDT</label>
+                  <label className="block text-gray-400 mb-2">Monto aproximado (MXN)</label>
                   <div className="relative">
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">$</span>
                     <input
                       type="number"
                       value={amount}
                       onChange={(e) => setAmount(e.target.value)}
-                      placeholder="100"
-                      className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white text-lg focus:outline-none focus:border-green-500 transition-colors"
+                      placeholder="10,000"
+                      className="w-full bg-slate-700/50 border border-slate-600 rounded-xl pl-8 pr-16 py-3 text-white text-lg focus:outline-none focus:border-cyan-400 transition-colors"
                     />
-                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-green-400 font-bold">
-                      USDT
+                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-cyan-400 font-bold">
+                      MXN
                     </span>
                   </div>
                 </div>
                 
                 <button
-                  onClick={handleWhatsApp}
-                  className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-lg text-lg transition-all transform hover:scale-105 flex items-center justify-center gap-3"
+                  onClick={handleTelegram}
+                  className="w-full bg-gradient-to-r from-blue-500 to-cyan-400 hover:from-blue-600 hover:to-cyan-500 text-white font-bold py-4 px-6 rounded-xl text-lg transition-all transform hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/25 flex items-center justify-center gap-3"
                 >
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
                   </svg>
-                  Contactar por WhatsApp
+                  Contactar por Telegram
                 </button>
+                
+                <p className="text-center text-gray-500 text-sm">
+                  Respuesta automática inmediata 🚀
+                </p>
               </div>
             </div>
 
@@ -92,55 +101,76 @@ export default function Home() {
               </h2>
               <div className="space-y-3">
                 <div className="flex items-center gap-3 text-gray-300">
-                  <span className="text-green-400 text-xl">✓</span>
-                  <span>Transacciones en minutos</span>
+                  <span className="text-cyan-400 text-xl">✓</span>
+                  <span>Procesamiento en minutos</span>
                 </div>
                 <div className="flex items-center gap-3 text-gray-300">
-                  <span className="text-green-400 text-xl">✓</span>
-                  <span>Mejor tipo de cambio</span>
+                  <span className="text-cyan-400 text-xl">✓</span>
+                  <span>Comisiones transparentes</span>
                 </div>
                 <div className="flex items-center gap-3 text-gray-300">
-                  <span className="text-green-400 text-xl">✓</span>
-                  <span>Atención 24/7</span>
+                  <span className="text-cyan-400 text-xl">✓</span>
+                  <span>Atención automática 24/7</span>
                 </div>
                 <div className="flex items-center gap-3 text-gray-300">
-                  <span className="text-green-400 text-xl">✓</span>
+                  <span className="text-cyan-400 text-xl">✓</span>
+                  <span>Integración con Arcus</span>
+                </div>
+                <div className="flex items-center gap-3 text-gray-300">
+                  <span className="text-cyan-400 text-xl">✓</span>
                   <span>100% seguro y confiable</span>
-                </div>
-                <div className="flex items-center gap-3 text-gray-300">
-                  <span className="text-green-400 text-xl">✓</span>
-                  <span>Sin comisiones ocultas</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Métodos de pago */}
-        <div className="bg-gray-800/30 rounded-xl p-6 border border-gray-700">
-          <h3 className="text-center text-gray-400 mb-4">Métodos de pago aceptados</h3>
-          <div className="flex flex-wrap justify-center gap-4 text-gray-300">
-            <span className="bg-gray-700/50 px-4 py-2 rounded-lg">💳 Transferencia</span>
-            <span className="bg-gray-700/50 px-4 py-2 rounded-lg">🏦 SPEI</span>
-            <span className="bg-gray-700/50 px-4 py-2 rounded-lg">💵 Efectivo</span>
-            <span className="bg-gray-700/50 px-4 py-2 rounded-lg">₿ Crypto</span>
+        {/* Servicios */}
+        <div className="grid md:grid-cols-3 gap-4 mb-8">
+          <div className="bg-slate-800/30 rounded-xl p-6 border border-blue-500/20 text-center hover:border-cyan-400/50 transition-colors">
+            <div className="text-3xl mb-3">💳</div>
+            <h3 className="text-white font-semibold mb-1">Pagos de Servicios</h3>
+            <p className="text-gray-400 text-sm">Recibe pagos de luz, agua, gas y más</p>
+          </div>
+          <div className="bg-slate-800/30 rounded-xl p-6 border border-blue-500/20 text-center hover:border-cyan-400/50 transition-colors">
+            <div className="text-3xl mb-3">🏧</div>
+            <h3 className="text-white font-semibold mb-1">Recargas</h3>
+            <p className="text-gray-400 text-sm">Tiempo aire y paquetes de datos</p>
+          </div>
+          <div className="bg-slate-800/30 rounded-xl p-6 border border-blue-500/20 text-center hover:border-cyan-400/50 transition-colors">
+            <div className="text-3xl mb-3">🔄</div>
+            <h3 className="text-white font-semibold mb-1">Transferencias</h3>
+            <p className="text-gray-400 text-sm">SPEI y transferencias bancarias</p>
+          </div>
+        </div>
+
+        {/* Badge Arcus */}
+        <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl p-6 border border-blue-500/20 text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-2xl mb-4">
+            <span className="text-3xl">🏦</span>
+          </div>
+          <h3 className="text-xl font-bold text-white mb-2">Socio Certificado Arcus</h3>
+          <p className="text-gray-400 mb-3">Infraestructura de pagos de nivel bancario</p>
+          <div className="inline-block bg-blue-500/10 border border-blue-500/30 rounded-lg px-4 py-2">
+            <span className="text-cyan-400 font-mono text-sm">ID: 706969140395121342</span>
           </div>
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="max-w-4xl mx-auto px-6 py-8 text-center text-gray-500">
-        <p>© 2024 VendoUSDT - Todos los derechos reservados</p>
+      <footer className="max-w-4xl mx-auto px-6 py-8 text-center text-gray-500 border-t border-blue-500/20">
+        <p>© 2024 Soluciones Integrales Bonanza - Todos los derechos reservados</p>
+        <p className="text-sm mt-2">Powered by Arcus</p>
       </footer>
 
-      {/* Botón flotante WhatsApp */}
+      {/* Botón flotante Telegram */}
       <button
-        onClick={handleWhatsApp}
-        className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all transform hover:scale-110 z-50"
-        aria-label="WhatsApp"
+        onClick={handleTelegram}
+        className="fixed bottom-6 right-6 bg-gradient-to-r from-blue-500 to-cyan-400 hover:from-blue-600 hover:to-cyan-500 text-white p-4 rounded-full shadow-lg transition-all transform hover:scale-110 z-50 hover:shadow-xl hover:shadow-cyan-500/25"
+        aria-label="Telegram"
       >
         <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
         </svg>
       </button>
     </div>
